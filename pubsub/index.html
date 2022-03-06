@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义发布订阅测试</title>
+  <script src="./index.js"></script>
+</head>
+
+<body>
+  <script>
+    const pubsub = new PubSub()
+
+    let pid1 = pubsub.subscribe('pay', (data) => { console.log('商家接单: ', data) })
+    let pid2 = pubsub.subscribe('pay', () => { console.log('骑手接单') })
+    let pid3 = pubsub.subscribe('feedback', (data) => { console.log(`评价: ${data.title}${data.feedback}`) })
+
+    // console.log(pubsub)
+
+    pubsub.publish('pay', {
+      title: '炸鸡',
+      msg: '预定11:11起送'
+    })
+
+    pubsub.publish('feedback', {
+      title: '炸鸡',
+      feedback: '还好'
+    })
+
+    console.log('%c%s', 'color: blue;font-size: 20px', '取消订阅')
+
+    // // 1. 取消全部订阅
+    // pubsub.unsubscribe()
+    // console.log(pubsub)
+
+    // // 2. 取消唯一订阅
+    // pubsub.unsubscribe(pid1)
+    // console.log(pubsub)
+
+    // 3. 取消指定消息的订阅
+    pubsub.unsubscribe('pay')
+    console.log(pubsub)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件回顾</title>
+  <style>
+    .outter {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+
+    .inner {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100px;
+      height: 100px;
+      margin: auto;
+      background-color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="outter">
+    <div class="inner"></div>
+  </div>
+  <script>
+    const outter = document.querySelector('.outter')
+    const inner = document.querySelector('.inner')
+
+    outter.addEventListener('click', function () {
+      console.log('捕获 outter')
+    }, true)    // true表示在事件捕获阶段， false或不传参表示在事件冒泡阶段
+
+    inner.addEventListener('click', function () {
+      console.log('捕获 inner')
+    }, true)
+
+
+    outter.addEventListener('click', function () {
+      console.log('冒泡 outter')
+    }, false)    // true表示在事件捕获阶段， false或不传参表示在事件冒泡阶段
+
+    inner.addEventListener('click', function () {
+      console.log('冒泡 inner')
+    })   
+  </script>
+
+</body>
+
+</html>

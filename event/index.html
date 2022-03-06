@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件总线</title>
+  <script src="./eventbus.js"></script>
+</head>
+
+<body>
+
+  <script>
+    const eventBus = new EventBus()
+
+    eventBus.on('login', function (name) {
+      console.log(`${name}登录了`)
+    })
+
+    eventBus.on('login', function (name) {
+      console.log(`${name}又登录了`)
+    })
+
+    eventBus.on('logout', function (name) {
+      console.log(`${name}退出登录了`)
+    })
+
+    // eventBus.off('login')
+    // console.log(eventBus)
+
+    eventBus.emit('login', '赤蓝紫')
+    eventBus.emit('logout', '赤蓝紫')
+
+
+  </script>
+</body>
+
+</html>
